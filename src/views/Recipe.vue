@@ -1,44 +1,24 @@
 <template>
   <router-link to="/"><img class="back-btn" src="../assets/images/back.png" alt="back-btn" /></router-link>
-  <div class="hero">
-    <div class="hero-content">
-      <h1>{{ recipe.title }}</h1>
-      <p class="desc">{{ recipe.description }}</p>
-    </div>
-  </div>
-  <div class="recipe">
-    <div class="ingredients">
-      <h3>Ingredients</h3>
-      <ul>
-        <li v-for="(ingredient, item) in recipe.ingredients" :key="item">
-          {{ ingredient }}
-          <hr />
-        </li>
-      </ul>
-    </div>
-    <div class="method">
-      <h3>Method</h3>
-      <ol>
-        <li v-for="(step, item) in recipe.method" :key="item">
-          <span v-html="cleanText(step)"> </span>
-          <hr />
-        </li>
-      </ol>
-    </div>
+  <Hero :title="recipe.title" :description="recipe.description" />
+  <div class="recipe-details custom-container">
+    <RecipeIngredients :recipe="recipe" />
+    <RecipeMethods :recipe="recipe" />
   </div>
 </template>
-<script>
-export default {
-  name: "RecipeView",
-  computed: {
-    recipe() {
-      return this.$store.state.recipes.find((recipe) => recipe.slug === this.$route.params.slug);
-    },
-  },
-  methods: {
-    cleanText(text) {
-      return text.replace(/\n/g, "<br/>");
-    },
-  },
-};
+<script setup>
+import { computed } from "vue";
+import { useStore } from "vuex";
+import { useRoute } from "vue-router";
+
+import Hero from "@/components/Hero.vue";
+import RecipeIngredients from "@/components/RecipeIngredients.vue";
+import RecipeMethods from "@/components/RecipeMethods.vue";
+
+const store = useStore();
+const route = useRoute();
+
+const recipe = computed(() => {
+  return store.state.recipes.find((recipe) => recipe.slug === route.params.slug);
+});
 </script>

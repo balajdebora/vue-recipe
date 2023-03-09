@@ -3,15 +3,44 @@
   margin: 0;
   box-sizing: border-box;
 }
+
+hr {
+  margin-top: 5px;
+  color: #292f36;
+}
+
 button,
 input,
 textarea {
   cursor: pointer;
   margin: 5px 0px;
 }
+input,
+textarea {
+  height: 30px;
+}
+
+button {
+  border: none;
+  background: #51575c9e;
+  color: white;
+  padding: 10px 10px;
+  width: 100%;
+  border-radius: 10px;
+}
+
+button:hover {
+  background: rgba(255, 255, 255, 0.669);
+  color: black;
+}
+
 textarea {
   resize: none;
-  height: 26px;
+}
+
+ul,
+ol {
+  padding: 0 20px;
 }
 
 .hero {
@@ -27,15 +56,19 @@ textarea {
   align-items: center;
   letter-spacing: 5px;
   position: relative;
+  padding: 0 15px;
 }
+
 .hero-content {
   position: relative;
   text-align: center;
   z-index: 9;
 }
+
 .hero-content h1 {
   font-size: 80px;
 }
+
 .hero-content button {
   border: none;
   background: #51575c9e;
@@ -45,10 +78,12 @@ textarea {
   border-radius: 10px;
   margin-top: 30px;
 }
+
 .hero-content button:hover {
   background: rgba(255, 255, 255, 0.669);
   color: black;
 }
+
 .hero::before {
   position: absolute;
   top: 0;
@@ -58,12 +93,7 @@ textarea {
   content: "";
   background: rgba(0, 0, 0, 0.6);
 }
-.recipes {
-  display: flex;
-  flex-wrap: wrap;
-  width: 1280px;
-  margin: auto;
-}
+
 .card {
   display: flex;
   flex-direction: column;
@@ -72,28 +102,35 @@ textarea {
   background: #10171d;
   box-shadow: 5px 5px 10px 3px #51575c9e;
   color: white;
-  flex: 1 1 300px;
-  margin: 20px;
   padding: 20px;
+  margin: 20px;
 }
+
+.card h3 {
+  font-size: 30px;
+  padding: 10px 0px;
+}
+
 .card p {
   padding: 5px 0px;
 }
-.card button {
-  border: none;
-  background: #51575c9e;
-  color: white;
-  padding: 10px 10px;
-  width: 100%;
-  border-radius: 10px;
-  margin-top: 30px;
+
+.custom-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 1280px;
+  max-width: 100%;
+  margin: 20px auto;
+  padding: 0 15px;
 }
-.card button:hover {
-  background: rgba(255, 255, 255, 0.669);
-  color: black;
+
+.recipes .card {
+  flex: 1 1 200px;
 }
+
 .add-recipe-popup {
-  position: absolute;
+  position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
@@ -101,97 +138,43 @@ textarea {
   z-index: 9;
   background: rgba(43, 43, 43, 0.78);
   display: flex;
-  min-height: 100vh;
   justify-content: center;
   align-items: center;
 }
-.popup-content {
-  color: white;
-  background: #10171d;
-  padding: 60px;
-  border-radius: 10px;
-  box-shadow: 10px 10px 10px 2px rgba(0, 0, 0, 0.682);
+
+.close-btn {
+  text-align: end;
+  padding-bottom: 20px;
 }
+
+.close-btn button {
+  border: none;
+  border-radius: 2px;
+  padding: 2px 5px;
+  width: auto;
+}
+
+.close-btn button:hover {
+  color: white;
+  background: rgb(130, 60, 60);
+}
+
 .group {
   display: flex;
   flex-direction: column;
   padding: 10px 0px;
 }
-.group input,
-textarea {
-  border-radius: 5px;
-  border: none;
-  padding: 5px;
-  width: 100%;
-}
-.group button {
-  margin-top: 10px;
-  border: none;
-  border-radius: 5px;
-  padding: 5px 0px;
-  background: #51575c9e;
-  color: white;
-}
-.group button:hover {
-  background: rgba(255, 255, 255, 0.669);
-  color: black;
-}
-.close-btn {
-  text-align: end;
-  padding-bottom: 20px;
-}
-.close-btn button {
-  border: none;
-  border-radius: 2px;
-  padding: 2px 5px;
-}
-.close-btn button:hover {
-  color: white;
-  background: rgb(130, 60, 60);
-}
-.add-btn {
-  width: 100%;
-  border: none;
-  margin-top: 20px;
-  padding: 10px;
-  border-radius: 5px;
-}
-.add-btn:hover {
-  background: rgba(255, 255, 255, 0.669);
-}
+
 .steps {
   display: flex;
 }
+
 .steps .group {
   justify-content: space-between;
 }
+
 .steps .group:first-child {
   margin-right: 10px;
-}
-hr {
-  margin-top: 5px;
-  color: #292f36;
-}
-.recipe {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px 0px;
-  width: 1280px;
-  margin: auto;
-}
-.recipe h3 {
-  font-size: 30px;
-  padding: 10px 0px;
-}
-.method,
-.ingredients {
-  flex: 1 0 0;
-  margin: 20px;
-  padding: 20px 50px;
-  border-radius: 10px;
-  background: #10171d;
-  box-shadow: 5px 5px 10px 3px #51575c9e;
-  color: white;
 }
 
 .back-btn {
@@ -201,6 +184,27 @@ hr {
   top: 15px;
   left: 15px;
 }
+.method,
+.ingredients {
+  flex: 1 0 0;
+  justify-content: flex-start;
+}
+
 .recipe li {
   padding-bottom: 10px;
+}
+
+@media (max-width: 767px) {
+  .hero-content h1 {
+    font-size: 40px;
+  }
+
+  .card {
+    margin: 0 0 20px 0;
+  }
+
+  .method,
+  .ingredients {
+    flex: auto;
+  }
 }
